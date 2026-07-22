@@ -1,6 +1,8 @@
 package Base;
 
+import Pages.DashboardPage;
 import Pages.LoginPage;
+import Pages.ProfilePage;
 import Utilities.DriverFactory;
 import io.appium.java_client.AppiumDriver;
 import org.testng.annotations.BeforeClass;
@@ -17,6 +19,8 @@ public class BaseTest {
     protected Properties config;
 
     protected LoginPage loginPage;
+    protected DashboardPage dashboardPage;
+    protected ProfilePage profilePage;
 
     @BeforeClass
     // Method that sets up the driver and loads configuration before running tests
@@ -36,6 +40,9 @@ public class BaseTest {
 
         loginPage = new LoginPage(driver, config);
         LoginToNdosiAutomation();
+
+        dashboardPage = new DashboardPage(driver,config);
+        profilePage = new ProfilePage(driver,config);
     }
 
     public void LoginToNdosiAutomation() {
