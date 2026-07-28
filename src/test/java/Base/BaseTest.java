@@ -4,7 +4,10 @@ import Pages.DashboardPage;
 import Pages.LoginPage;
 import Pages.ProfilePage;
 import Utilities.DriverFactory;
+import Utilities.ScreenshotUtils;
 import io.appium.java_client.AppiumDriver;
+import org.testng.Assert;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 
 import java.io.FileInputStream;
@@ -47,10 +50,29 @@ public class BaseTest {
 
     public void LoginToNdosiAutomation() {
         loginPage.clickBurgerMenuButton();
+        ScreenshotUtils.captureScreenshot(driver, "Burger Menu Clicked");
+
         loginPage.clickSignInButton();
+        ScreenshotUtils.captureScreenshot(driver, "Sign In Button Clicked");
+
         loginPage.enterEmail(config.getProperty("email"));
+        ScreenshotUtils.captureScreenshot(driver, "Email Entered");
+
         loginPage.enterPassword(config.getProperty("password"));
+        ScreenshotUtils.captureScreenshot(driver, "Password Entered");
+
         loginPage.clickLoginButton();
+        ScreenshotUtils.captureScreenshot(driver, "Login Button Clicked");
+
+        Assert.assertTrue(loginPage.isLoginSuccess(),"Login successful!");
+    }
+
+    @AfterClass
+    public void teardown(){
+        DriverFactory.quitDriver();
     }
 
 }
+
+
+
