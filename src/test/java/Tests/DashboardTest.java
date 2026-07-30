@@ -7,6 +7,9 @@ public class DashboardTest extends BaseTest {
 
     @Test
     public void Test() {
-        //
+        dashboardPage.clickViewAllButton();
     }
 }
+
+
+
